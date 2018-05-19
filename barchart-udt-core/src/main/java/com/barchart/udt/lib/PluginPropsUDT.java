@@ -172,7 +172,8 @@ public class PluginPropsUDT {
 	 * list of release library paths expected to be resent for current platform;
 	 * must be packaged in the jar; used during release delivery
 	 */
-	protected static List<String> currentReleaseLibraries(final String coreName) {
+	protected static List<String> currentReleaseLibraries(
+			final String coreName) {
 
 		final List<String> list = new ArrayList<String>();
 
@@ -197,7 +198,8 @@ public class PluginPropsUDT {
 	 * list of staging library paths expected to be resent for current platform;
 	 * must be located on test class path; used during NAR build
 	 */
-	protected static List<String> currentStagingLibraries(final String coreName) {
+	protected static List<String> currentStagingLibraries(
+			final String coreName) {
 
 		final List<String> list = new ArrayList<String>();
 
@@ -221,7 +223,8 @@ public class PluginPropsUDT {
 	 * list of testing library paths expected to be resent for current platform;
 	 * must be located on test class path; used during CDT build
 	 */
-	protected static List<String> currentTestingLibraries(final String coreName) {
+	protected static List<String> currentTestingLibraries(
+			final String coreName) {
 
 		final List<String> list = new ArrayList<String>();
 

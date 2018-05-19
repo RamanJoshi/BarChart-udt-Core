@@ -1,28 +1,19 @@
-<!-- Copyright (C) 2009-2013 Barchart, Inc. <http://www.barchart.com /> All 
-	rights reserved. Licensed under the OSI BSD License. http://www.opensource.org/licenses/bsd-license.php -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
+<!-- 	<parent>
 		<groupId>com.barchart.udt</groupId>
 		<artifactId>barchart-udt-archon</artifactId>
 		<version>2.3.1-SNAPSHOT</version>
 		<relativePath>../barchart-udt-archon</relativePath>
-	</parent>
-
+	</parent> -->
+	
+	<groupId>org.barchart.udt</groupId>
+	<version>1.0.0-SNAPSHOT</version>	
 	<artifactId>barchart-udt-core</artifactId>
 	<packaging>jar</packaging>
-
-	<url>https://github.com/barchart/barchart-udt</url>
-	<description>Barchart UDT [ CORE ]</description>
-
-	<scm>
-		<url>https://github.com/barchart/barchart-udt</url>
-	    <connection>scm:git:git@github.com:barchart/barchart-udt.git</connection>
-    	<developerConnection>scm:git:git@github.com:barchart/barchart-udt.git</developerConnection>
-		<tag>master</tag>
-	</scm>
 
 	<properties>
 
@@ -44,26 +35,8 @@
 		<!-- note: ${label} and ${jdk} is set by jenkins matrix build -->
 
 	</properties>
-	<repositories>
-    <!-- location of artifacts before they are published to maven central -->
-    <repository>
-        <id>sonatype-public</id>
-        <name>sonatype-public</name>
-        <url>http://oss.sonatype.org/content/groups/public/</url>
-        <releases>
-            <enabled>true</enabled>
-        </releases>
-        <snapshots>
-            <enabled>true</enabled>
-        </snapshots>
-    </repository>
-</repositories>
-<dependencies>
-    <dependency>
-        <groupId>com.barchart.udt</groupId>
-        <artifactId>barchart-udt-bundle</artifactId>
-        <version>2.3.1-SNAPSHOT</version>
-    </dependency>
+
+	<dependencies>
 
 		<!-- MAIN -->
 
@@ -71,14 +44,13 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<scope>compile</scope>
+			<version>1.7.7</version>
 		</dependency>
-
 		<!-- optional logging back end -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<scope>provided</scope>
+			<version>1.1.2</version>
 		</dependency>
 
 		<!-- TEST -->
@@ -87,6 +59,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -98,34 +71,25 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- native arch/os stats -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.fusesource</groupId> -->
-		<!-- <artifactId>sigar</artifactId> -->
-		<!-- <version>1.6.4</version> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.fusesource</groupId> -->
-		<!-- <artifactId>sigar</artifactId> -->
-		<!-- <version>1.6.4</version> -->
-		<!-- <classifier>native</classifier> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.fusesource</groupId> -->
-		<!-- <artifactId>libsigar-x86-linux</artifactId> -->
-		<!-- <version>1.6.4</version> -->
-		<!-- <type>so</type> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
-
-		<!-- file util -->
 		<dependency>
-			<groupId>org.apache.commons</groupId>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
+	</dependency>
+	<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.1</version>
+	</dependency>	
+		<dependency>
+			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>1.3.2</version>
-			<scope>test</scope>
+			<version>2.0.1</version>
 		</dependency>
 
 	</dependencies>
@@ -256,6 +220,7 @@
 			<plugin>
 				<groupId>com.carrotgarden.maven</groupId>
 				<artifactId>carrot-maven-scr-plugin</artifactId>
+				<version>1.1.5</version>
 				<configuration>
 				</configuration>
 				<executions>
@@ -841,91 +806,5 @@
 				</plugins>
 			</build>
 		</profile>
-
-		<!-- Publish maven site to github. -->
-		<profile>
-			<id>website</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.github.github</groupId>
-						<artifactId>site-maven-plugin</artifactId>
-						<version>0.7</version>
-						<executions>
-							<execution>
-								<id>maven-site</id>
-								<phase>site</phase>
-								<goals>
-									<goal>site</goal>
-								</goals>
-								<configuration>
-									<merge>true</merge>
-									<server>github</server>
-									<path>site/${project.artifactId}</path>
-									<message>site ${project.artifactId}-${project.version}</message>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<!-- Produce diff between git repo and udt repo. -->
-		<profile>
-			<id>difference</id>
-			<build>
-
-				<plugins>
-
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-scm-plugin</artifactId>
-						<configuration>
-							<connectionType>connection</connectionType>
-							<connectionUrl>${connectionUDT}</connectionUrl>
-							<checkoutDirectory>${checkoutUDT}</checkoutDirectory>
-						</configuration>
-						<executions>
-							<execution>
-								<id>checkout-udt-sources-from-csv</id>
-								<phase>generate-sources</phase>
-								<goals>
-									<goal>checkout</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>produce-diff</id>
-								<phase>generate-sources</phase>
-								<configuration>
-									<target>
-										<exec executable="git" output="src/main/patches/${moduleUDT}/result.patch" error="target/result.patch.error">
-											<arg value="diff" />
-											<arg value="--no-index" />
-											<arg value="--no-prefix" />
-											<arg value="${checkoutUDT}/${moduleUDT}/src" />
-											<arg value="${nativeSrcUDT}/src" />
-										</exec>
-									</target>
-								</configuration>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
-				</plugins>
-			</build>
-		</profile>
-
 	</profiles>
-
 </project>
